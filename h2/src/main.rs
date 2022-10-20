@@ -4,7 +4,7 @@ use std::cmp::Ordering;
 
 fn main() {
     println!("Guess the number");
-    let sec = rand::thread_rng().gen_range(1..=100);
+    let sec = rand::thread_rng().gen_range(1..=1000000);
     loop {
         println!("Please input your guess");
     
@@ -13,8 +13,10 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
     
-        let guess: u32 = guess.trim().parse().expect("aaaa");
-    
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
         match guess.cmp(&sec) {
             Ordering::Less => println!("Too little"),
             Ordering::Greater => println!("Too big"),
