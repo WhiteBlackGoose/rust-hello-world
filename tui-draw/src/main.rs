@@ -2,7 +2,7 @@ use crossterm::{
     ExecutableCommand, QueueableCommand,
     terminal, cursor, style::{self, Stylize}, Result
 };
-use std::io::{stdout, Write, stdin};
+use std::io::{stdout, Write};
 use console::Term;
 use std::cmp;
 
