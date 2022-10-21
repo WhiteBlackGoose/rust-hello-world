@@ -31,19 +31,15 @@ enum IpAddrKind {
     MyAss { x: i32, y: i32 }
 }
 
+enum MyResult<T, TError> {
+    Ok(T),
+    Error(TError)
+}
+
 fn main() {
-    let user1 = User {
-        email: String::from("heh@hehe.com"),
-        username: String::from("goose"),
-        active: true,
-        sign_in_count: 1
-    };
-    println!("user1 is {:?}", user1.full_name());
-    let four = IpAddrKind::V4(String::from("aaa"));
-    let six = IpAddrKind::V6(String::from("bbb"));
-    let x = match IpAddrKind::MyAss { x: 32, y: 44 } {
-        IpAddrKind::V4(&s) => String::from("v4 {s}"),
-        IpAddrKind::V6(&s) => String::from("v6 {s}"),
-        IpAddrKind::MyAss{ x: x, y: y} => String::from("my ass {x} {y} ")
-    };
+    let myRes: MyResult<i32, &str> = MyResult::Ok(3);
+    match myRes {
+        MyResult::Ok(r) => println!("Ok: {r}"),
+        MyResult::Error(e) => println!("Error: {e}")
+    }
 }
