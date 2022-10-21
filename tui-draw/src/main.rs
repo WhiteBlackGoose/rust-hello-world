@@ -20,7 +20,6 @@ fn main() -> Result<()> {
   };
   let (mut x, mut y) = (0i16, 0i16);
   loop {
-    let mut s = String::new();
     stdout
         .queue(cursor::MoveTo(x as u16, y as u16))?
         .queue(style::PrintStyledContent("█".magenta()))?;
